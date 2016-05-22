@@ -160,18 +160,18 @@ class Highlights
       if lastLineTokens.length is 1 and lastLineTokens[0].value is ''
         lineTokens.pop()
 
-    results = [];
+    results = []
     for tokens in lineTokens
       scopeStack = []
-      html = '';
+      html = ''
       for {value, scopes} in tokens
         value = ' ' unless value
         html = @updateScopeStack(scopeStack, scopes, html)
         html += "<span>#{@escapeString(value)}</span>"
       html = @popScope(scopeStack, html) while scopeStack.length > 0
-      results.push(html);
+      results.push(html)
 
-    JSON.stringify(results);
+    JSON.stringify(results)
 
   loadGrammarsSync: ->
     return if @registry.grammars.length > 1
